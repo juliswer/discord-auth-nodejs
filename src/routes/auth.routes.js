@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const passport = require("passport");
-const { isNotAuthorized } = require("../utils/auth");
+const { isNotAuthorized, isAuthorized } = require("../utils/auth");
 
 router.get("/", isNotAuthorized, passport.authenticate("discord"));
 
@@ -13,8 +13,8 @@ router.get(
   })
 );
 
-router.get("/logout", (req, res) => {
-  if (req.user) req.logout();
+router.get("/logout", isAuthorized, (req, res) => {
+  req.logout();
   res.redirect("/");
 });
 
