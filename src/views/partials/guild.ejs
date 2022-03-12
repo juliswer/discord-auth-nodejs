@@ -12,14 +12,14 @@
 
         <h2 class="h6"><%= guild.name %></h2>
         <%if(guild.owner) {%>
-            <span class="badge bg-success">Owner</span>
+            <span class="badge bg-success mb-2">Owner</span>
         <%}%>
 
-        <button data-bs-toggle="collapse" data-bs-target="#collapse1">
+        <button data-bs-toggle="collapse" data-bs-target="<%= '#collapse' + guild.id%>" class="btn btn-primary btn-sm">
             Features
         </button>
 
-        <div class="collapse" id="collapse1">
+        <div class="collapse" id="<%= 'collapse' + guild.id%>">
             <ul class="collapse">
                 <% guild.features.forEach(feature => { %>
                     <li><%=feature%></li>
