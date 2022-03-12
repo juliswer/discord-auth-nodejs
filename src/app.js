@@ -21,7 +21,10 @@ app.use(
     resave: false,
     store: MongoStore.create({
       mongoUrl: MONGODB_URI
-    }) 
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    }
   })
 );
 app.use(passport.initialize());
