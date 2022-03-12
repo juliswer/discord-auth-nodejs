@@ -14,6 +14,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(
   session({
     secret: "some secret",
+    name: "discord-oauth-cookie",
     saveUninitialized: false,
     resave: false,
   })
