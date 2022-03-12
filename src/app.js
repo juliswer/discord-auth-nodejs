@@ -11,11 +11,13 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // MIDDLEWARES
-app.use(session({
+app.use(
+  session({
     secret: "some secret",
     saveUninitialized: false,
-    resave: false
-}))
+    resave: false,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
