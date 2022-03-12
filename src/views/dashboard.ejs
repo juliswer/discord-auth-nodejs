@@ -10,11 +10,8 @@
     <h1>Dashboard</h1>
     <p>Welcome back again, <%= user.username %>, These are you servers:</p>
 
-    <% guilds.forEach((guild) => { %>
-        <div>
-            <h2><%= guild.name %></h2>
-            <p><%= guild.id %></p>
-        </div>
+    <% user.guilds.forEach((guild) => { %>
+        <%- include('partials/guild', {guild})%>
     <% }) %>
 
 </body>
