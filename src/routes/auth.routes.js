@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const router = Router();
-
 const passport = require("passport");
+const { isNotAuthorized } = require("../utils/auth");
 
-router.get("/", passport.authenticate("discord"));
+router.get("/", isNotAuthorized, passport.authenticate("discord"));
 
 router.get(
   "/redirect",

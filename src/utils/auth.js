@@ -6,6 +6,15 @@ function isAuthorized(req, res, next) {
   }
 }
 
+function isNotAuthorized(req, res, next) {
+  if (!req.user) {
+    next();
+  } else {
+    res.redirect("/dashboard");
+  }
+}
+
 module.exports = {
   isAuthorized,
+  isNotAuthorized,
 };
