@@ -20,16 +20,21 @@ passport.use(
       callbackURL: "/auth/redirect",
       scope: ["identify", "guilds"],
     },
-    (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
-
+    async (accessToken, refreshToken, profile, done) => {
       try {
+
+        const user = await User.findOne({discordId: profile.id})
+
+        if(user) return done(null, user)
+
         const newUser = new User({
           discordId: profile.id,
           username: profile.username,
           guilds: profile.guilds,
         });
         done(null, newUser);
+
+        await newUser.save();
       } catch (error) {
         console.error(error);
         return done(error, null);
