@@ -1,11 +1,15 @@
 <%- include('partials/header')%>
-    <h1>Dashboard</h1>
-    <p>Welcome back again, <%= user.username %>, These are you servers:</p>
-
-    <div>
-        <% user.guilds.forEach((guild) => { %>
-            <%- include('partials/guild', {guild})%>
-        <% }) %>
+    <div class="bg-dark">
+        <div class="container text-light">
+            <h1>Dashboard</h1>
+            <p>Welcome back again, <%= user.username %>, These are you servers:</p>
+                
+            <div class="row">
+                <% user.guilds.forEach((guild) => { %>
+                    <%- include('partials/guild', {guild})%>
+                <% }) %>
+            </div>
+        </div>
     </div>
 
 <%- include('partials/footer')%>
