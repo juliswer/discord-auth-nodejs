@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 
-router.get("/login", (req, res) => {
-  res.send("login");
-});
+const passport = require('passport');
+
+router.get("/", passport.authenticate('discord'));
 
 module.exports = router;
