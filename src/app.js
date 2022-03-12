@@ -21,11 +21,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//GLOBAL VARIABLES
+app.use((req, res, next) => {
+  app.locals.user = req.user;
+  next();
+});
+
 // ROUTES
 app.use("/", require("./routes/index.routes"));
 app.use("/auth", require("./routes/auth.routes"));
 app.use("/dashboard", require("./routes/dashboard.routes"));
-
-//GLOBAL VARIABLES
 
 module.exports = app;
