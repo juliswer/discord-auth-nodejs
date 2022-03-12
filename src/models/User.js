@@ -1,8 +1,23 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-new Schema({
+const userSchema = new Schema(
+  {
     discordId: {
-        type: String,
-        require: true
-    }
-})
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    guilds: {
+      type: Array,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = model("User", userSchema);
