@@ -3,6 +3,8 @@ const path = require("path");
 const app = express();
 const session = require("express-session");
 const passport = require("passport");
+const MongoStore = require('connect-mongo');
+const {MONGODB_URI} = require('./config')
 
 require("./strategies/discordStrategy");
 
@@ -17,6 +19,9 @@ app.use(
     name: "discord-oauth-cookie",
     saveUninitialized: false,
     resave: false,
+    store: MongoStore.create({
+      mongoUrl: MONGODB_URI
+    }) 
   })
 );
 app.use(passport.initialize());
