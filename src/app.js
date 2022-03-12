@@ -4,7 +4,7 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require('connect-mongo');
-const {MONGODB_URI} = require('./config')
+const {MONGODB_URI, SECRET} = require('./config')
 
 require("./strategies/discordStrategy");
 
@@ -15,7 +15,7 @@ app.set("views", path.join(__dirname, "views"));
 // MIDDLEWARES
 app.use(
   session({
-    secret: "some secret",
+    secret: SECRET,
     name: "discord-oauth-cookie",
     saveUninitialized: false,
     resave: false,
