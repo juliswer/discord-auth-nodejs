@@ -3,8 +3,8 @@ const path = require("path");
 const app = express();
 const session = require("express-session");
 const passport = require("passport");
-const MongoStore = require('connect-mongo');
-const {MONGODB_URI, SECRET} = require('./config')
+const MongoStore = require("connect-mongo");
+const { MONGODB_URI, SECRET } = require("./config");
 
 require("./strategies/discordStrategy");
 
@@ -20,11 +20,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: MONGODB_URI
+      mongoUrl: MONGODB_URI,
     }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
-    }
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    },
   })
 );
 app.use(passport.initialize());
