@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  done(null, user);
+  if (user) done(null, user);
 });
 
 passport.use(
@@ -22,10 +22,9 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        const user = await User.findOne({ discordId: profile.id });
 
-        const user = await User.findOne({discordId: profile.id})
-
-        if(user) return done(null, user)
+        if (user) return done(null, user);
 
         const newUser = new User({
           discordId: profile.id,
